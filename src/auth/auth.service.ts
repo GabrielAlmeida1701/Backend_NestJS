@@ -57,10 +57,7 @@ export class AuthService {
         })
         
         if (!userToken || userToken?.token != refreshToken || userToken?.expires < new Date())
-        {
-            console.log(`${userToken?.token} == ${refreshToken}`)
             return
-        }
 
         return userId
     }
@@ -93,7 +90,7 @@ export class AuthService {
 
     private getTokenExpiration() : Date {
         let expiresIn = new Date();
-        expiresIn.setDate(expiresIn.getDate() + 30); // 30 days
+        expiresIn.setMinutes(expiresIn.getMinutes() + 3); // +3 minutes
 
         return expiresIn
     }
